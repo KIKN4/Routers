@@ -1,0 +1,51 @@
+<label for="SortBy">Sort By</label>
+<select
+  class="form-select"
+  id="SortBy"
+  aria-label="Default select example"
+  [(ngModel)]="sortBy"
+  (ngModelChange)="changeSort(sortBy, sortDirection)"
+>
+  @for (sortOption of sortByOptions; track $index) {
+  <option [value]="sortOption">{{ sortOption }}</option>
+  }
+</select>
+<label for="SortBy" class="mt-5">Sort Direction</label>
+
+<select
+  class="form-select"
+  id="sortDirection"
+  aria-label="Default select example"
+  [(ngModel)]="sortDirection"
+  (ngModelChange)="changeSort(sortBy, sortDirection)"
+>
+  @for (option of sortDirOptions; track $index) {
+  <option [value]="option">{{ option }}</option>
+  }
+</select>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Age</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Experience Years</th>
+      <th scope="col">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of users; track user.age) {
+    <tr>
+      <th scope="row">{{ user.age }}</th>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.experienceYears }}</td>
+      <td>
+        <a routerLink="/products/{{ user.id }}">{{ user.id }}</a>
+      </td>
+    </tr>
+
+    }
+  </tbody>
+</table>
